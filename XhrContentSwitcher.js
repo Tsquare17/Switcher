@@ -1,11 +1,11 @@
 class XhrContentSwitcher
 {
     #className = 'XhrContentSwitcher';
-    debugging = false;
 
-    constructor(containerSelector, linkSelector) {
+    constructor(containerSelector, linkSelector, debugging = false) {
         this.containerSelector = containerSelector;
         this.linkSelector = linkSelector;
+        this.debugging = debugging;
     }
 
     init() {

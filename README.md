@@ -21,13 +21,11 @@
 </div>
 ```
 
+- On `/page-1`, clicking the link will replace the contents of `<div class="container">` with the contents of `<div class="container">` from `/page-2`, and update the URL.
 ```js
-const switcher = new XhrContentSwitcher('.container', '.switcher-link');
-
-// optionally, switcher.debugging = true will console.log()
-// if no elements are found matching your selectors.
-
+const switcher = new XhrContentSwitcher(
+    '.container', // Selector for the container to replace the contents of.
+    '.switcher-link' // Selector for the links to intercept.
+);
 switcher.init();
 ```
-
-- On `/page-1`, clicking the link will replace the contents of `<div class="container">` with the contents of `<div class="container">` from `/page-2`, and update the URL.
