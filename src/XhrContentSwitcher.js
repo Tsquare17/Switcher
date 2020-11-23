@@ -20,10 +20,7 @@ export default class XhrContentSwitcher
                 }
             });
 
-            let link = document.querySelector(this.linkSelector);
-            if ((link === null || link.length === 0) && this.debugging) {
-                console.log(this.#className + ': No elements of the class ' + this.linkSelector + ' were found');
-            }
+            this.#getElement(this.linkSelector);
         });
     }
 
@@ -32,13 +29,7 @@ export default class XhrContentSwitcher
     }
 
     #getContainer(el) {
-        let container = document.querySelector(el);
-
-        if ((container === null || container.length === 0) && this.debugging) {
-            console.log(this.#className + ': No elements of the class ' + el + ' were found');
-        }
-
-        return container;
+        return this.#getElement(el);
     }
 
     #replaceEvent(event) {
@@ -63,5 +54,15 @@ export default class XhrContentSwitcher
 
     #updateURL(location) {
         window.history.pushState(null, '', location);
+    }
+
+    #getElement(selector) {
+        let el = document.querySelector(selector);
+
+        if (el === null && this.debugging) {
+            console.log(this.#className + ': No elements of the class ' + selector + ' were found');
+        }
+
+        return el;
     }
 }
