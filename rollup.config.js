@@ -1,5 +1,5 @@
 import babel from '@rollup/plugin-babel';
-import { uglify } from "rollup-plugin-uglify";
+import { terser } from "rollup-plugin-terser";
 
 export default {
     input: 'src/XhrContentSwitcher.js',
@@ -13,8 +13,6 @@ export default {
         babel({
             babelHelpers: 'bundled',
         }),
-        uglify({
-            sourcemap: true,
-        }),
+        terser(),
     ]
 };
