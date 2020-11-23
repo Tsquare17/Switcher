@@ -1,6 +1,7 @@
-class XhrContentSwitcher
+export default class XhrContentSwitcher
 {
     #className = 'XhrContentSwitcher';
+    #onSwitchCall = null;
 
     constructor(containerSelector, linkSelector, debugging = false) {
         this.containerSelector = containerSelector;
@@ -15,7 +16,7 @@ class XhrContentSwitcher
             document.querySelector('body').addEventListener('click', e => {
                 if (e.target.classList.contains(this.linkSelector.replace('.', ''))) {
                     e.preventDefault();
-                    this.#replaceEvent(e.target);
+                    this.#replaceEvent(e);
                 }
             });
 
@@ -24,7 +25,11 @@ class XhrContentSwitcher
                 console.log(this.#className + ': No elements of the class ' + this.linkSelector + ' were found');
             }
         });
-    };
+    }
+
+    onSwitch(call) {
+        this.#onSwitchCall = call;
+    }
 
     #getContainer(el) {
         let container = document.querySelector(el);
@@ -36,18 +41,23 @@ class XhrContentSwitcher
         return container;
     }
 
-    #replaceEvent(link) {
+    #replaceEvent(event) {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 let parser = new DOMParser();
                 let doc = parser.parseFromString(xhr.responseText, 'text/html');
                 this.container.innerHTML = doc.querySelector(this.containerSelector).innerHTML;
-                this.#updateURL(link);
+
+                this.#updateURL(event.target);
+
+                if (this.#onSwitchCall) {
+                    this.#onSwitchCall(event);
+                }
             }
         };
 
-        xhr.open('GET', link, true);
+        xhr.open('GET', event.target, true);
         xhr.send();
     }
 

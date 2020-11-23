@@ -1,0 +1,22 @@
+{
+  "name": "xhrcontentswitcher",
+  "version": "1.0.0",
+  "description": "Easily replace content without reloading the page.",
+  "main": "index.js",
+  "dependencies": {
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-private-methods": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@rollup/plugin-babel": "^5.2.1",
+    "rollup": "^2.33.3"
+  },
+  "scripts": {
+    "build": "rollup --config"
+  },
+  "author": "Trevor Thompson <trevor@trevomail.com>",
+  "license": "MIT"
+}
