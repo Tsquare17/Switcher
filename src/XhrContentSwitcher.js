@@ -10,7 +10,7 @@ export default class XhrContentSwitcher
     }
 
     init() {
-        this.container = this.#getContainer(this.containerSelector);
+        this.container = this.#getElement(this.containerSelector);
 
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('body').addEventListener('click', e => {
@@ -26,10 +26,6 @@ export default class XhrContentSwitcher
 
     onSwitch(call) {
         this.#onSwitchCall = call;
-    }
-
-    #getContainer(el) {
-        return this.#getElement(el);
     }
 
     #replaceEvent(event) {
