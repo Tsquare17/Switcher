@@ -10,26 +10,20 @@ export default class XhrContentSwitcher
     }
 
     init() {
-        this.container = this.#getContainer(this.containerSelector);
+        this.container = this.#getElement(this.containerSelector);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('body').addEventListener('click', e => {
-                if (e.target.classList.contains(this.linkSelector.replace('.', ''))) {
-                    e.preventDefault();
-                    this.#replaceEvent(e);
-                }
-            });
-
-            this.#getElement(this.linkSelector);
+        document.querySelector('body').addEventListener('click', e => {
+            if (e.target.classList.contains(this.linkSelector.replace('.', ''))) {
+                e.preventDefault();
+                this.#replaceEvent(e);
+            }
         });
+
+        this.#getElement(this.linkSelector);
     }
 
     onSwitch(call) {
         this.#onSwitchCall = call;
-    }
-
-    #getContainer(el) {
-        return this.#getElement(el);
     }
 
     #replaceEvent(event) {
@@ -60,7 +54,7 @@ export default class XhrContentSwitcher
         let el = document.querySelector(selector);
 
         if (el === null && this.debugging) {
-            console.log(this.#className + ': No elements of the class ' + selector + ' were found');
+            console.log(this.#className + ': No elements matching ' + selector + ' were found');
         }
 
         return el;
