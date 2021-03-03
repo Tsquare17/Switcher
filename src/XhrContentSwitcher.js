@@ -13,7 +13,7 @@ export default class XhrContentSwitcher
         this.container = this.#getElement(this.containerSelector);
 
         document.querySelector('body').addEventListener('click', e => {
-            if (e.target.classList.contains(this.linkSelector.replace('.', ''))) {
+            if (e.target.matches(this.linkSelector)) {
                 e.preventDefault();
                 this.#replaceEvent(e);
             }
@@ -34,7 +34,7 @@ export default class XhrContentSwitcher
                 let doc = parser.parseFromString(xhr.responseText, 'text/html');
                 this.container.innerHTML = doc.querySelector(this.containerSelector).innerHTML;
 
-                this.#updateURL(event.target);
+                XhrContentSwitcher.#updateURL(event.target);
 
                 if (this.#onSwitchCall) {
                     this.#onSwitchCall(event);
@@ -46,7 +46,7 @@ export default class XhrContentSwitcher
         xhr.send();
     }
 
-    #updateURL(location) {
+    static #updateURL(location) {
         window.history.pushState(null, '', location);
     }
 
