@@ -1,4 +1,4 @@
-# XhrContentSwitcher
+# Switcher
 
 ### Easily replace content without reloading the page.
 
@@ -25,16 +25,11 @@
 ```js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const switcher = new XhrContentSwitcher(
+    const switcher = new Switcher(
         '.container', // Selector for the container to replace the contents of.
         '.switcher-link', // Selector for the links to intercept.
         false // console.log() if container or link selectors not found. default = false.
     );
-
-    // Optionally, perform an action after switching content.
-    switcher.onSwitch(function(event) {
-        console.log(event.target);
-    })
 
     switcher.init();
 });

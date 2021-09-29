@@ -1,7 +1,5 @@
-export default class XhrContentSwitcher
-{
-    #className = 'XhrContentSwitcher';
-    #onSwitchCall = null;
+export default class Switcher {
+    #className = 'XhrSwitcher';
 
     constructor(containerSelector, linkSelector, debugging = false) {
         this.containerSelector = containerSelector;
@@ -13,6 +11,7 @@ export default class XhrContentSwitcher
         this.container = this.#getElement(this.containerSelector);
 
         document.querySelector('body').addEventListener('click', e => {
+            console.log('click', e.target.classList[0]);
             if (e.target.matches(this.linkSelector)) {
                 e.preventDefault();
                 this.#replaceEvent(e);
@@ -22,23 +21,29 @@ export default class XhrContentSwitcher
         this.#getElement(this.linkSelector);
     }
 
-    onSwitch(call) {
-        this.#onSwitchCall = call;
-    }
-
     #replaceEvent(event) {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(xhr.responseText, 'text/html');
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(xhr.responseText, 'text/html');
+                const newContent = doc.querySelector(this.containerSelector).innerHTML;
+
+                const beforeSwitch = new CustomEvent('switcher.before', {
+                    detail: {
+                        event: event,
+                        content: newContent
+                    }
+                });
+
+                document.dispatchEvent(beforeSwitch);
+
                 this.container.innerHTML = doc.querySelector(this.containerSelector).innerHTML;
 
-                XhrContentSwitcher.#updateURL(event.target);
+                Switcher.#updateURL(event.target);
 
-                if (this.#onSwitchCall) {
-                    this.#onSwitchCall(event);
-                }
+                const afterSwitch = new CustomEvent('switcher.after');
+                document.dispatchEvent(afterSwitch);
             }
         };
 
