@@ -11,7 +11,6 @@ export default class Switcher {
         this.container = this.#getElement(this.containerSelector);
 
         document.querySelector('body').addEventListener('click', e => {
-            console.log('click', e.target.classList[0]);
             if (e.target.matches(this.linkSelector)) {
                 e.preventDefault();
                 this.#replaceEvent(e);
