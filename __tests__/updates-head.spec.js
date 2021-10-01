@@ -13,23 +13,23 @@ const xhrMockClass = () => ({
 
 document.body.innerHTML = documentHtml;
 
-describe('Switcher basic tests.', () => {
+describe('Updates head.', () => {
     beforeAll(() => {
         window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);
         window.XMLHttpRequest.DONE = 4;
     });
 
-    it('Document is loaded', () => {
-        expect(document.querySelector('#content').innerHTML).toEqual('<div>testing</div>');
-    });
-
-    it('Switches content on link click', () => {
+    it('Title is updated', () => {
         const switcher = new Switcher({containerSelector: '#content', linkSelector: '.link'});
         switcher.init();
 
         const link = document.querySelector('.link');
         link.click();
 
-        expect(document.querySelector('#content').innerHTML).toEqual('<div>switched</div>');
+        expect(document.querySelector('title').innerHTML).toEqual('Switched');
+    });
+
+    it('Script defining foo is added', () => {
+        expect(foo).toBeDefined();
     });
 });

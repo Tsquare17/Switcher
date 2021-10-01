@@ -1,8 +1,19 @@
 # Switcher
 
-### Easily replace content without reloading the page.
+## Easily replace content without reloading the page.
 
-#### Example:
+Switcher, inspired by TurboLinks, sends an XHR request, swaps body content, and adds any missing scripts and styles.
+
+---
+
+### Example 1:
+```js
+    const switcher = new Switcher();
+    switcher.init();
+```
+That's it! Switcher will automatically hijack internal links, and swap out differing html contents on click.
+
+### Example 2:
 - URL: /page-1
 ```html
 <div class="container">
@@ -25,12 +36,23 @@
 ```js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const switcher = new Switcher(
-        '.container', // Selector for the container to replace the contents of.
-        '.switcher-link', // Selector for the links to intercept.
-        false // console.log() if container or link selectors not found. default = false.
-    );
+    const switcher = new Switcher({
+        containerSelector: '.container', // default = 'body'
+        linkSelector: '.switcher-link', // default = 'a'
+        debug: false // console.log() if container or link selectors not found. default = false.
+    });
 
     switcher.init();
 });
 ```
+
+- A link can be excluded by adding the attribute `data-switcher="false"`
+
+---
+### Events
+
+#### switcher.before
+Fires after the request has been made, before the content has been replaced.
+
+#### switcher.after
+Fires after the content has been replaced.

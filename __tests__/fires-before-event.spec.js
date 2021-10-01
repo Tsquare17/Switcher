@@ -17,7 +17,7 @@ window.XMLHttpRequest.DONE = 4;
 
 describe('Before event.', () => {
     it('Before switch event fires', () => {
-        const switcher = new Switcher('#content', '.link');
+        const switcher = new Switcher({containerSelector: '#content', linkSelector: '.link'});
         switcher.init();
 
         const link = document.querySelector('.link');

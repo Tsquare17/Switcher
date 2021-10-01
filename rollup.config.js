@@ -5,7 +5,7 @@ export default {
     input: 'src/Switcher.js',
     output: {
         dir: 'dist',
-        format: 'iife',
+        format: 'umd',
         name: 'Switcher',
         sourcemap: true,
     },
