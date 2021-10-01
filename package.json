@@ -1,5 +1,5 @@
 {
-  "name": "switcher",
+  "name": "@tsquare/switcher",
   "version": "1.0.0",
   "author": "Trevor Thompson <trevor@trevomail.com>",
   "license": "MIT",
@@ -19,5 +19,9 @@
   "scripts": {
     "build": "rollup --config",
     "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tsquare17/Wwitcher.git"
   }
 }
