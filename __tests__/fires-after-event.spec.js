@@ -11,13 +11,12 @@ const xhrMockClass = () => ({
     responseText: '<body><div id="content"><div>switched</div></div></body>',
 });
 
-document.body.innerHTML = documentHtml;
 window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);
 window.XMLHttpRequest.DONE = 4;
 
 describe('After event.', () => {
     it('After switch event fires', () => {
-        const switcher = new Switcher({containerSelector: '#content', linkSelector: '.link'});
+        const switcher = new Switcher();
         switcher.init();
 
         const link = document.querySelector('.link');

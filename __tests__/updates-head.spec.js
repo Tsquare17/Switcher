@@ -11,8 +11,6 @@ const xhrMockClass = () => ({
     responseText: '<html><head><title>Switched</title><script>var foo = true;</script></head><body><div id="content"><div>switched</div></div></body></html>',
 });
 
-document.body.innerHTML = documentHtml;
-
 describe('Updates head.', () => {
     beforeAll(() => {
         window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);

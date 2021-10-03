@@ -11,7 +11,6 @@ const xhrMockClass = () => ({
     responseText: '<html><head><title>Switched</title><script>var foo = true;</script></head><body><div id="content"><div>switched</div></div></body></html>',
 });
 
-document.body.innerHTML = documentHtml;
 
 describe('Switcher basic tests.', () => {
     beforeAll(() => {
@@ -24,7 +23,7 @@ describe('Switcher basic tests.', () => {
     });
 
     it('Switches content on link click', () => {
-        const switcher = new Switcher({containerSelector: '#content', linkSelector: '.link'});
+        const switcher = new Switcher({containerSelector: '#content'});
         switcher.init();
 
         const link = document.querySelector('.link');

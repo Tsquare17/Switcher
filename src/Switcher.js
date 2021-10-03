@@ -163,6 +163,19 @@ export default class Switcher {
 
     #updateDom(doc) {
         this.#updateNodes = [];
+        const currentElements = document.querySelector(this.containerSelector);
+        let addElements = this.#getNonExistentElements(doc, currentElements);
+        let removeElements = this.#getNonExistentElements(currentElements, doc);
+
+        for (const node of removeElements) {
+            node.remove();
+        }
+
+        for (const node of addElements) {
+            let newElement = node.cloneNode(true);
+            document.querySelector(this.containerSelector).appendChild(newElement);
+        }
+
         this.#diffNodes(doc, document.querySelector(this.containerSelector));
 
         for (const node of this.#updateNodes) {
@@ -198,5 +211,23 @@ export default class Switcher {
         if (!nodeA.isEqualNode(nodeB)) {
             this.#updateNodes.push({current: nodeB, replacement: nodeA});
         }
+    }
+
+    #getNonExistentElements(docA, docB) {
+        let elements = [];
+        for (let i = 0; i < docA.children.length; i++) {
+            let existing = null;
+            for (let k = 0; k < docB.children.length; k++) {
+                if (docA.children[i].isEqualNode(docB.children[k])) {
+                    existing = k;
+                }
+            }
+
+            if (existing === null) {
+                elements.push(docA.children[i]);
+            }
+        }
+
+        return elements;
     }
 }

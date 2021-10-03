@@ -11,8 +11,6 @@ const xhrMockClass = () => ({
     responseText: '<html><body><div id="content"><div>switched</div></div></body></html>',
 });
 
-document.body.innerHTML = documentHtml;
-
 describe('Switcher data attributes work.', () => {
     beforeAll(() => {
         window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);

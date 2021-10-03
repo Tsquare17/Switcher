@@ -1,4 +1,4 @@
-export default `
+document.body.outerHTML =  `
 <html lang="en-US">
 <head>
 <title>Test</title>
