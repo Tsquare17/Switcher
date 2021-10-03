@@ -135,6 +135,7 @@ export default class Switcher {
             }
 
             if (!isPresent) {
+                this.#bodyScripts.push(script);
                 this.#addScript(script, this.containerSelector);
             }
         }
@@ -180,6 +181,11 @@ export default class Switcher {
     #diffNodes(nodeA, nodeB) {
         for (let i = 0; i < nodeA.children.length; i++) {
             if (nodeA.children[i].isEqualNode(nodeB.children[i])) {
+                continue;
+            }
+
+            if (nodeA.children[i].tagName === 'SCRIPT') {
+                console.log('skipped', nodeA.children[i]);
                 continue;
             }
 
