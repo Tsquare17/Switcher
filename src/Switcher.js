@@ -185,7 +185,6 @@ export default class Switcher {
             }
 
             if (nodeA.children[i].tagName === 'SCRIPT') {
-                console.log('skipped', nodeA.children[i]);
                 continue;
             }
 
