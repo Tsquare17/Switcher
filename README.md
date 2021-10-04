@@ -8,8 +8,8 @@ Switcher, inspired by TurboLinks, sends an XHR request, swaps body content, and 
 
 ### Example 1:
 ```js
-    const switcher = new Switcher();
-    switcher.init();
+const switcher = new Switcher();
+switcher.init();
 ```
 That's it! Switcher will automatically hijack internal links, and swap out differing html contents on click.
 

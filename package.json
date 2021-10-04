@@ -1,10 +1,10 @@
 {
   "name": "@tsquare/switcher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Trevor Thompson <trevor@trevomail.com>",
   "license": "MIT",
   "description": "Easily replace content without reloading the page.",
-  "main": "src/Switcher.js",
+  "main": "dist/Switcher.js",
   "devDependencies": {
     "@babel/core": "^7.12.7",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
