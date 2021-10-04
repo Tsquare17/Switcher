@@ -1,6 +1,6 @@
 {
   "name": "@tsquare/switcher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Trevor Thompson <trevor@trevomail.com>",
   "license": "MIT",
   "description": "Easily replace content without reloading the page.",
